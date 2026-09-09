@@ -5,7 +5,7 @@
 }
 
 html, body, #root {
-  background-color: #0b143a;
+  background-color: #1a2a6c;
   font-family: var(--font-sans);
   box-sizing: border-box;
   margin: 0;
@@ -19,7 +19,7 @@ html, body, #root {
 }
 
 .hero-heading {
-  background: linear-gradient(180deg, #ffffff 10%, #edd88b 55%, #c9a84c 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #c9a84c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -28,34 +28,3 @@ html, body, #root {
 .text-gold { color: #c9a84c; }
 .bg-gold { background-color: #c9a84c; }
 .border-gold { border-color: #c9a84c; }
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-33.333333%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 35s linear infinite;
-}
-
-/* Custom smooth scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0b143a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1a2a6c;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #c9a84c;
-}

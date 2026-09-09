@@ -21,7 +21,7 @@ export const FadeIn = ({
   className,
   ...props
 }: FadeInProps) => {
-  const MotionComponent = motion.create(as as keyof React.JSX.IntrinsicElements) as any;
+  const MotionComponent = motion.create(as as keyof JSX.IntrinsicElements) as any;
 
   return (
     <MotionComponent

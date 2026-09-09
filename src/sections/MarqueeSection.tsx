@@ -1,43 +1,84 @@
-import React from 'react';
-import { Star, Zap, CheckCircle2, ShieldCheck, Smartphone, Globe } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const HIGHLIGHTS = [
-  { title: "Hôtel Baie Bleue", loc: "Nosy Be", tag: "+185% Réservations", tech: "0.7s 4G" },
-  { title: "Maison Soie & Coton", loc: "Tana Analakely", tag: "Catalogue MVola", tech: "E-commerce" },
-  { title: "Le Baobab Gourmand", loc: "Tamatave", tag: "Menu QR Code", tech: "Local SEO" },
-  { title: "Madagascar Discovery", loc: "Antananarivo", tag: "Circuits & Devis", tech: "Multilingue" },
-  { title: "Vanilla & Spices", loc: "Sava / Sambava", tag: "Export & B2B", tech: "Stripe & MVola" },
-  { title: "Clinic Medical Plus", loc: "Tana Ankorondrano", tag: "Prise de RDV", tech: "Ultra-rapide" },
-  { title: "Lodge Sainte-Marie", loc: "Île Sainte-Marie", tag: "Whales Safari", tech: "Direct WhatsApp" },
-  { title: "Boutique Artisanale", loc: "Majunga", tag: "Paiement Orange Money", tech: "Mobile First" },
+const IMAGES = [
+  "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
+  "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
+  "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
+  "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
+  "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
+  "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
+  "https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
+  "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
+  "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
+  "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
+  "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
+  "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
+  "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
+  "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
+  "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
+  "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
+  "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
+  "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
+  "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
+  "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
+  "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif"
 ];
 
+const ROW_1 = IMAGES.slice(0, 11);
+const ROW_2 = IMAGES.slice(11);
+
+// Tripled arrays for seamless looping
+const ROW_1_TRIPLED = [...ROW_1, ...ROW_1, ...ROW_1];
+const ROW_2_TRIPLED = [...ROW_2, ...ROW_2, ...ROW_2];
+
 export const MarqueeSection = () => {
-  const duplicated = [...HIGHLIGHTS, ...HIGHLIGHTS, ...HIGHLIGHTS];
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrollOffset, setScrollOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      const sectionTop = sectionRef.current.offsetTop;
+      const newOffset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
+      setScrollOffset(newOffset);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section className="bg-[#091132] py-8 overflow-hidden border-y border-white/10 relative z-20">
-      <div className="flex gap-4 w-max animate-marquee hover:[animation-play-state:paused]">
-        {duplicated.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#c9a84c]/50 transition-colors shrink-0 backdrop-blur-sm"
-          >
-            <div className="w-8 h-8 rounded-xl bg-[#c9a84c]/20 flex items-center justify-center text-[#c9a84c]">
-              <Zap className="w-4 h-4" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-bold text-white">{item.title}</span>
-                <span className="text-[10px] text-white/50">({item.loc})</span>
-              </div>
-              <div className="flex items-center gap-2 mt-0.5">
-                <span className="text-xs font-semibold text-[#c9a84c]">{item.tag}</span>
-                <span className="text-[10px] text-white/40">•</span>
-                <span className="text-[10px] text-emerald-400 font-mono">{item.tech}</span>
-              </div>
-            </div>
-          </div>
+    <section ref={sectionRef} className="bg-[#1a2a6c] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden flex flex-col gap-3">
+      <div 
+        className="flex gap-3 will-change-transform w-max"
+        style={{ transform: `translate3d(${scrollOffset - 200}px, 0, 0)` }}
+      >
+        {ROW_1_TRIPLED.map((src, i) => (
+          <img 
+            key={`row1-${i}`}
+            src={src} 
+            alt="Work preview" 
+            loading="lazy"
+            className="w-[420px] h-[270px] rounded-2xl object-cover flex-shrink-0 shadow-lg shadow-black/20"
+          />
+        ))}
+      </div>
+      
+      <div 
+        className="flex gap-3 will-change-transform w-max"
+        style={{ transform: `translate3d(${-(scrollOffset - 200)}px, 0, 0)` }}
+      >
+        {ROW_2_TRIPLED.map((src, i) => (
+          <img 
+            key={`row2-${i}`}
+            src={src} 
+            alt="Work preview" 
+            loading="lazy"
+            className="w-[420px] h-[270px] rounded-2xl object-cover flex-shrink-0 shadow-lg shadow-black/20"
+          />
         ))}
       </div>
     </section>

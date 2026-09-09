@@ -6,14 +6,7 @@ interface AnimatedTextProps {
   className?: string;
 }
 
-interface CharacterProps {
-  char: string;
-  progress: MotionValue<number>;
-  range: [number, number];
-  key?: React.Key;
-}
-
-const Character = ({ char, progress, range }: CharacterProps) => {
+const Character = ({ char, progress, range }: { char: string, progress: MotionValue<number>, range: [number, number] }) => {
   const opacity = useTransform(progress, range, [0.2, 1]);
 
   return (
