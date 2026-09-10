@@ -4,27 +4,36 @@
  */
 
 import React from 'react';
-import { HeroSection } from './sections/HeroSection';
-import { MarqueeSection } from './sections/MarqueeSection';
-import { AboutSection } from './sections/AboutSection';
-import { ServicesSection } from './sections/ServicesSection';
-import { ProjectsSection } from './sections/ProjectsSection';
-import { AuditSection } from './sections/AuditSection';
-import { ContactSection } from './sections/ContactSection';
-import { Footer } from './components/Footer';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
+import { RootLayout } from './layouts/RootLayout';
+import { Home } from './pages/Home';
+import { Portfolio } from './pages/Portfolio';
+import { Experiences } from './pages/Experiences';
+import { Lab } from './pages/Lab';
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      {/* @ts-expect-error - React router types issue with key prop */}
+      <Routes location={location} key={location.pathname}>
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/experiences" element={<Experiences />} />
+          <Route path="/lab" element={<Lab />} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 export default function App() {
   return (
-    <main className="w-full bg-[#1a2a6c] min-h-screen text-white overflow-x-clip font-sans">
-      <HeroSection />
-      <MarqueeSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <AuditSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
   );
 }
 
