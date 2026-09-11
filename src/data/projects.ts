@@ -1,8 +1,14 @@
-import hotelNosyBe from '../assets/images/hotel_nosy_be_1789109928572.jpg';
-import boutiqueTana from '../assets/images/boutique_tana_1789109943937.jpg';
-import restoTamatave from '../assets/images/resto_tamatave_1789109958355.jpg';
-import nosySuite from '../assets/images/nosy_suite_1789109973248.jpg';
-import tanaCrafts from '../assets/images/tana_crafts_1789109986554.jpg';
+import nosyHotelWeb from '../assets/images/nosy_hotel_web_1789110846067.jpg';
+import nosySuiteUi from '../assets/images/nosy_suite_ui_1789110860860.jpg';
+import nosyMobileWeb from '../assets/images/nosy_mobile_web_1789110872346.jpg';
+
+import tanaShopWeb from '../assets/images/tana_shop_web_1789110890231.jpg';
+import tanaCartUi from '../assets/images/tana_cart_ui_1789110906237.jpg';
+import tanaCraftUi from '../assets/images/tana_craft_ui_1789110917164.jpg';
+
+import restoTamaWeb from '../assets/images/resto_tama_web_1789110933681.jpg';
+import restoMenuUi from '../assets/images/resto_menu_ui_1789110946371.jpg';
+import restoTableUi from '../assets/images/resto_table_ui_1789110960977.jpg';
 
 export interface ProjectItem {
   id: string;
@@ -55,15 +61,14 @@ export const projectsData: ProjectItem[] = [
     description: "Création d'un site vitrine haut de gamme pour un éco-resort à Nosy Be. L'objectif principal était de réduire drastiquement la dépendance aux plateformes de réservation en offrant une expérience sensorielle immédiate et un canal de réservation direct WhatsApp en 2 clics.",
     challenges: "La lenteur de chargement de l'ancien site sur les téléphones portables et la perte de clients potentiels rebutés par des formulaires de réservation trop longs.",
     solutions: "Architecture React ultralégère (< 1s de chargement sur réseau 3G/4G à Madagascar), intégration d'un bouton de réservation instantanée WhatsApp pré-rempli et visuels cinématographiques haute définition.",
-    heroImage: hotelNosyBe,
-    col1Img1: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200',
-    col1Img2: nosySuite,
-    col2Img: hotelNosyBe,
+    heroImage: nosyHotelWeb,
+    col1Img1: nosySuiteUi,
+    col1Img2: nosyMobileWeb,
+    col2Img: nosyHotelWeb,
     gallery: [
-      hotelNosyBe,
-      nosySuite,
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1200'
+      nosyHotelWeb,
+      nosySuiteUi,
+      nosyMobileWeb
     ],
     tags: ['Luxe & Tourisme', 'Réservation Directe', 'Mobile First', 'Nosy Be'],
     metrics: [
@@ -96,15 +101,14 @@ export const projectsData: ProjectItem[] = [
     description: "Développement d'une boutique e-commerce ultra-fluide adaptée aux réalités du marché malgache. Finie la perte de conversion en message privé : le client sélectionne son article, valide son panier et règle directement via son numéro mobile.",
     challenges: "La majorité des acheteurs malgaches n'ont pas de carte bancaire visa/mastercard et achètent à 95% depuis leur smartphone le soir après le travail.",
     solutions: "Mise en place d'un tunnel de commande sans mot de passe avec paiement direct MVola / Orange Money et synchronisation immédiate du livreur par WhatsApp.",
-    heroImage: boutiqueTana,
-    col1Img1: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200',
-    col1Img2: tanaCrafts,
-    col2Img: boutiqueTana,
+    heroImage: tanaShopWeb,
+    col1Img1: tanaCartUi,
+    col1Img2: tanaCraftUi,
+    col2Img: tanaShopWeb,
     gallery: [
-      boutiqueTana,
-      tanaCrafts,
-      'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=1200'
+      tanaShopWeb,
+      tanaCartUi,
+      tanaCraftUi
     ],
     tags: ['E-Commerce', 'MVola / Orange Money', 'Panier Express', 'Antananarivo'],
     metrics: [
@@ -137,15 +141,14 @@ export const projectsData: ProjectItem[] = [
     description: "Conception d'une landing page séduisante et immersive pour un restaurant réputé du bord de mer à Tamatave. Les photos haute résolution et le menu accessible par QR code transforment chaque internaute en convive assis à table.",
     challenges: "Menus papier abîmés par les embruns marins, prix des poissons fluctuant au jour le jour et perte de clients faute d'un menu en ligne visible sur Google.",
     solutions: "Menu QR code dynamique instantané, référencement Google Maps optimisé et module de réservation de table par créneaux horaires.",
-    heroImage: restoTamatave,
-    col1Img1: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200',
-    col1Img2: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1200',
-    col2Img: restoTamatave,
+    heroImage: restoTamaWeb,
+    col1Img1: restoMenuUi,
+    col1Img2: restoTableUi,
+    col2Img: restoTamaWeb,
     gallery: [
-      restoTamatave,
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80&w=1200'
+      restoTamaWeb,
+      restoMenuUi,
+      restoTableUi
     ],
     tags: ['Gastronomie', 'QR Code Menu', 'Réservation Table', 'Tamatave'],
     metrics: [
