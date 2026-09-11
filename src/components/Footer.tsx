@@ -4,7 +4,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#0C0C0C] py-16 sm:py-20 md:py-24 border-t border-[#D7E2EA]/20 flex flex-col items-center gap-6">
       <div className="text-[#D7E2EA] font-medium text-center">
-        PixelStudio_mg — Créateur de sites web à Madagascar
+        PixelStudio — Créateur de sites web à Madagascar
       </div>
       
       <div className="flex items-center gap-6 text-[#D7E2EA]">
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="text-[#D7E2EA] opacity-40 font-light text-sm">
-        Copyright © 2026 PixelStudio_mg
+        Copyright © 2026 PixelStudio
       </div>
     </footer>
   );

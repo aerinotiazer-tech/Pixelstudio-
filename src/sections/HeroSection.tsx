@@ -24,7 +24,7 @@ export const HeroSection: React.FC = () => {
         <div className="overflow-hidden w-full flex justify-center">
           <FadeIn delay={0.15} y={40} duration={0.9} className="w-full flex justify-center text-center">
             <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
-              PixelStudio<span style={{ textShadow: 'none' }}>_</span>mg
+              PixelStudio
             </h1>
           </FadeIn>
         </div>
@@ -36,7 +36,7 @@ export const HeroSection: React.FC = () => {
           <Magnet padding={150} strength={3}>
             <img 
               src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png" 
-              alt="Portrait PixelStudio_mg"
+              alt="Portrait PixelStudio"
               className="w-full h-auto object-contain pointer-events-auto"
             />
           </Magnet>

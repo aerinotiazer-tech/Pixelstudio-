@@ -1,6 +1,6 @@
 {
-  "name": "Portfolio pixel studio",
-  "description": "Portfolio of pixel studios ",
+  "name": "PixelStudio",
+  "description": "Créateur de sites web à Madagascar",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
