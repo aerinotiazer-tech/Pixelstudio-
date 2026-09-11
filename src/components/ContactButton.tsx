@@ -1,20 +1,25 @@
 import React from 'react';
 
-export const ContactButton: React.FC = () => {
+interface ContactButtonProps {
+  label?: string;
+  className?: string;
+}
+
+export const ContactButton: React.FC<ContactButtonProps> = ({
+  label = "Réserver un audit gratuit",
+  className = "",
+}) => {
   return (
     <a
       href="https://calendly.com/rachidlemonteur/audit-gratuit"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-block rounded-full px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base text-white font-medium uppercase tracking-widest transition-transform hover:scale-105 active:scale-95"
+      className={`inline-block rounded-full px-7 py-3 sm:px-9 sm:py-3.5 text-xs sm:text-sm md:text-base text-white font-medium uppercase tracking-wider transition-all duration-200 hover:brightness-110 active:scale-[0.98] border border-white/25 shadow-lg ${className}`}
       style={{
-        background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
-        boxShadow: '0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset',
-        outline: '2px solid white',
-        outlineOffset: '-3px',
+        background: 'linear-gradient(120deg, #1A0524 0%, #9E0091 50%, #7621B0 100%)',
       }}
     >
-      Réserver un audit gratuit
+      {label}
     </a>
   );
 };

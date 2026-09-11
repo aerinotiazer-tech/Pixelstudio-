@@ -6,7 +6,6 @@ interface Card3DProps {
   className?: string;
   index: number;
   total: number;
-  depth?: number;
   maxTilt?: number;
 }
 
@@ -15,8 +14,7 @@ export const Card3D: React.FC<Card3DProps> = ({
   className = '',
   index,
   total,
-  depth = 50,
-  maxTilt = 10,
+  maxTilt = 6,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -24,52 +22,44 @@ export const Card3D: React.FC<Card3DProps> = ({
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+      setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window));
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Scroll 3D transforms
+  // Subtle 3D scroll progression
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ['start end', 'end start'],
   });
 
-  // 3D rotations driven by scroll
   const scrollRotateXRaw = useTransform(
     scrollYProgress,
     [0, 0.4, 0.6, 1],
-    [12, 0, -3, -12]
+    [8, 0, -2, -8]
   );
   const scrollTranslateZRaw = useTransform(
     scrollYProgress,
     [0, 0.4, 0.6, 1],
-    [-70, 0, -20, -100]
-  );
-  const scrollRotateYRaw = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [index % 2 === 0 ? -3 : 3, 0, index % 2 === 0 ? 3 : -3]
+    [-40, 0, -10, -60]
   );
 
-  // Springs for buttery smooth physics
-  const scrollRotateX = useSpring(scrollRotateXRaw, { stiffness: 120, damping: 25 });
-  const scrollTranslateZ = useSpring(scrollTranslateZRaw, { stiffness: 120, damping: 25 });
-  const scrollRotateY = useSpring(scrollRotateYRaw, { stiffness: 120, damping: 25 });
+  const scrollRotateX = useSpring(scrollRotateXRaw, { stiffness: 100, damping: 26 });
+  const scrollTranslateZ = useSpring(scrollTranslateZRaw, { stiffness: 100, damping: 26 });
 
-  // Mouse 3D tilt
+  // Mouse tilt (desktop only)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const mouseRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [maxTilt, -maxTilt]), {
-    stiffness: 250,
-    damping: 30,
+    stiffness: 220,
+    damping: 28,
   });
   const mouseRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-maxTilt, maxTilt]), {
-    stiffness: 250,
-    damping: 30,
+    stiffness: 220,
+    damping: 28,
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -96,7 +86,7 @@ export const Card3D: React.FC<Card3DProps> = ({
   return (
     <div
       ref={cardRef}
-      style={{ perspective: 1400 }}
+      style={{ perspective: 1200 }}
       className="w-full h-full"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -105,16 +95,12 @@ export const Card3D: React.FC<Card3DProps> = ({
       <motion.div
         style={{
           transformStyle: 'preserve-3d',
-          rotateX: isHovered ? mouseRotateX : scrollRotateX,
-          rotateY: isHovered ? mouseRotateY : scrollRotateY,
+          rotateX: isHovered && !isMobile ? mouseRotateX : scrollRotateX,
+          rotateY: isHovered && !isMobile ? mouseRotateY : 0,
           translateZ: scrollTranslateZ,
-          willChange: 'transform',
+          willChange: isHovered ? 'transform' : 'auto',
         }}
-        className={`w-full h-full transition-shadow duration-300 ${
-          isHovered
-            ? 'shadow-[0_30px_70px_rgba(182,0,168,0.25)]'
-            : 'shadow-[0_20px_50px_rgba(0,0,0,0.6)]'
-        } ${className}`}
+        className={`w-full h-full ${className}`}
       >
         {children}
       </motion.div>
