@@ -52,6 +52,7 @@ export const MarqueeSection: React.FC = () => {
             key={idx} 
             src={src} 
             alt="Website Preview" 
+            referrerPolicy="no-referrer"
             className="w-[420px] h-[270px] rounded-2xl object-cover shrink-0 bg-[#1A1A1A]"
             loading="lazy"
           />
@@ -68,6 +69,7 @@ export const MarqueeSection: React.FC = () => {
             key={idx} 
             src={src} 
             alt="Website Preview" 
+            referrerPolicy="no-referrer"
             className="w-[420px] h-[270px] rounded-2xl object-cover shrink-0 bg-[#1A1A1A]"
             loading="lazy"
           />

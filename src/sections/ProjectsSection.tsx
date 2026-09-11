@@ -1,33 +1,23 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { LiveProjectButton } from '../components/LiveProjectButton';
 import { FadeIn } from '../components/FadeIn';
+import { projectsData, ProjectItem } from '../data/projects';
+import { Sparkles, Clock, ArrowRight } from 'lucide-react';
 
-const projectsData = [
-  {
-    category: 'Site vitrine',
-    name: 'Hôtel Nosy Be',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
-  },
-  {
-    category: 'E-commerce',
-    name: 'Boutique Tana',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85',
-  },
-  {
-    category: 'Landing page',
-    name: 'Restaurant Tamatave',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85',
-  }
-];
+interface ProjectCardProps {
+  project: ProjectItem;
+  index: number;
+  total: number;
+}
 
-const ProjectCard = ({ project, index, total }: { project: any, index: number, total: number }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  index,
+  total,
+}) => {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -36,64 +26,117 @@ const ProjectCard = ({ project, index, total }: { project: any, index: number, t
 
   const targetScale = 1 - (total - 1 - index) * 0.03;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
-  
-  // Opacity fade as it moves up under other cards
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0.5]);
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0.6]);
+
+  const handleOpenProject = () => {
+    navigate(`/projet/${project.id}`);
+  };
 
   return (
-    <div ref={containerRef} className="h-[85vh] w-full sticky flex justify-center" style={{ top: `calc(6rem + ${index * 28}px)` }}>
-      <motion.div 
+    <div
+      ref={containerRef}
+      className="h-[88vh] sm:h-[85vh] w-full sticky flex justify-center"
+      style={{ top: `calc(5rem + ${index * 24}px)` }}
+    >
+      <motion.div
         style={{ scale, opacity }}
-        className="w-full h-full bg-[#0C0C0C] border-2 border-[#D7E2EA] rounded-[40px] sm:rounded-[50px] md:rounded-[60px] p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 shadow-2xl overflow-hidden"
+        className="w-full h-full bg-[#0C0C0C] border-2 border-[#D7E2EA]/80 hover:border-[#D7E2EA] transition-colors rounded-[32px] sm:rounded-[48px] md:rounded-[56px] p-4 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-5 shadow-2xl overflow-hidden group"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 sm:gap-6">
-            <span className="font-black text-[clamp(2.5rem,8vw,100px)] text-[#D7E2EA] leading-none">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-3 sm:gap-6">
+            <span className="font-black text-[clamp(2.2rem,7vw,90px)] text-[#D7E2EA] leading-none select-none">
               0{index + 1}
             </span>
             <div className="flex flex-col">
-              <span className="uppercase text-[#D7E2EA]/60 font-medium tracking-wider text-xs sm:text-sm">{project.category}</span>
-              <h3 className="font-medium text-[#D7E2EA] text-xl sm:text-2xl md:text-3xl">{project.name}</h3>
+              <div className="flex items-center gap-2">
+                <span className="uppercase text-[#D7E2EA]/60 font-medium tracking-wider text-xs">
+                  {project.category}
+                </span>
+                <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-mono bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  <Clock className="w-3 h-3" /> {project.delivery}
+                </span>
+              </div>
+              <h3 className="font-medium text-[#D7E2EA] text-lg sm:text-2xl md:text-3xl tracking-tight">
+                {project.name}
+              </h3>
             </div>
           </div>
-          <div className="hidden sm:block">
-            <LiveProjectButton />
+
+          <div className="flex items-center gap-2">
+            <LiveProjectButton onClick={handleOpenProject} label="Voir le projet" />
           </div>
         </div>
 
-        {/* Mobile button if needed */}
-        <div className="sm:hidden w-full flex justify-end">
-          <LiveProjectButton />
+        {/* Project tags */}
+        <div className="hidden sm:flex items-center gap-2 flex-wrap">
+          {project.tags.map((tag, i) => (
+            <span
+              key={i}
+              className="text-[11px] font-medium uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/70"
+            >
+              {tag}
+            </span>
+          ))}
+          <span className="text-xs text-white/50 font-light italic ml-2">
+            {project.results}
+          </span>
         </div>
 
-        {/* Images Grid */}
-        <div className="flex-1 flex gap-3 sm:gap-4 md:gap-6 w-full overflow-hidden">
+        {/* Images Grid - click triggers navigation to project page */}
+        <div
+          onClick={handleOpenProject}
+          className="flex-1 flex gap-2.5 sm:gap-4 md:gap-6 w-full overflow-hidden cursor-pointer"
+        >
           {/* Left Column (40%) */}
-          <div className="w-[40%] flex flex-col gap-3 sm:gap-4 md:gap-6 h-full">
-            <img 
-              src={project.col1Img1} 
-              alt={`${project.name} preview 1`} 
-              className="w-full object-cover rounded-[20px] sm:rounded-[30px] md:rounded-[40px]"
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
-              loading="lazy"
-            />
-            <img 
-              src={project.col1Img2} 
-              alt={`${project.name} preview 2`} 
-              className="w-full object-cover rounded-[20px] sm:rounded-[30px] md:rounded-[40px] flex-1 min-h-[clamp(160px,22vw,340px)]"
-              loading="lazy"
-            />
+          <div className="w-[40%] flex flex-col gap-2.5 sm:gap-4 md:gap-6 h-full">
+            <div className="relative overflow-hidden rounded-[18px] sm:rounded-[26px] md:rounded-[36px] group-hover:brightness-105 transition-all duration-500 h-[45%]">
+              <img
+                src={project.col1Img1}
+                alt={`${project.name} preview 1`}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+
+            <div className="relative overflow-hidden rounded-[18px] sm:rounded-[26px] md:rounded-[36px] group-hover:brightness-105 transition-all duration-500 flex-1">
+              <img
+                src={project.col1Img2}
+                alt={`${project.name} preview 2`}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
           </div>
-          
-          {/* Right Column (60%) */}
-          <div className="w-[60%] h-full">
-            <img 
-              src={project.col2Img} 
-              alt={`${project.name} full preview`} 
-              className="w-full h-full object-cover rounded-[24px] sm:rounded-[40px] md:rounded-[50px]"
+
+          {/* Right Column (60%) - Hero Feature Image */}
+          <div className="w-[60%] h-full relative overflow-hidden rounded-[20px] sm:rounded-[32px] md:rounded-[44px] group-hover:brightness-105 transition-all duration-500">
+            <img
+              src={project.col2Img}
+              alt={`${project.name} full preview`}
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               loading="lazy"
             />
+
+            {/* Overlay Banner */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-6 md:p-8">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs w-fit mb-2">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Rendu Haute Définition</span>
+              </div>
+              <p className="text-white text-xs sm:text-base md:text-lg font-medium drop-shadow-md line-clamp-2">
+                {project.tagline}
+              </p>
+              <div className="mt-2 flex items-center gap-1.5 text-[11px] sm:text-xs text-white/80 group-hover:text-white transition-colors">
+                <span className="font-semibold text-white">Voir la page complète du projet & la démo live</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -103,16 +146,29 @@ const ProjectCard = ({ project, index, total }: { project: any, index: number, t
 
 export const ProjectsSection: React.FC = () => {
   return (
-    <section id="projets" className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-20 py-20 px-5 sm:px-8 md:px-10 overflow-clip">
+    <section
+      id="projets"
+      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-20 py-20 px-4 sm:px-8 md:px-10 overflow-clip"
+    >
       <FadeIn delay={0} y={40}>
-        <h2 className="hero-heading font-black uppercase text-center text-[clamp(3rem,12vw,160px)] leading-none tracking-tight mb-20">
-          Projets
-        </h2>
+        <div className="text-center mb-16 sm:mb-20">
+          <h2 className="hero-heading font-black uppercase text-center text-[clamp(3rem,12vw,160px)] leading-none tracking-tight">
+            Projets
+          </h2>
+          <p className="text-[#D7E2EA]/70 text-sm sm:text-base md:text-lg mt-4 max-w-xl mx-auto font-light">
+            Découvrez nos réalisations récentes à Madagascar avec des visuels haute définition générés pour nos clients. Cliquez sur un projet pour tester son site live.
+          </p>
+        </div>
       </FadeIn>
 
       <div className="relative w-full max-w-6xl mx-auto flex flex-col gap-[10vh] pb-24">
         {projectsData.map((proj, i) => (
-          <ProjectCard key={i} index={i} total={projectsData.length} project={proj} />
+          <ProjectCard
+            key={proj.id}
+            index={i}
+            total={projectsData.length}
+            project={proj}
+          />
         ))}
       </div>
     </section>

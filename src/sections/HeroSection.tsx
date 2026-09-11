@@ -8,13 +8,18 @@ export const HeroSection: React.FC = () => {
     <section className="h-screen flex flex-col overflow-x-clip relative">
       {/* Navbar */}
       <FadeIn delay={0} y={-20} duration={0.8} className="w-full px-6 md:px-10 pt-6 md:pt-8 flex justify-between items-center z-20">
-        {['À propos', 'Services', 'Projets', 'Contact'].map((item, i) => (
+        {[
+          { label: 'À propos', href: '#a-propos' },
+          { label: 'Services', href: '#services' },
+          { label: 'Projets', href: '#projets' },
+          { label: 'Contact', href: '#contact' },
+        ].map((item, i) => (
           <a
             key={i}
-            href={`#${item.toLowerCase().replace(' ', '-')}`}
+            href={item.href}
             className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity duration-200"
           >
-            {item}
+            {item.label}
           </a>
         ))}
       </FadeIn>
@@ -37,6 +42,7 @@ export const HeroSection: React.FC = () => {
             <img 
               src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png" 
               alt="Portrait PixelStudio"
+              referrerPolicy="no-referrer"
               className="w-full h-auto object-contain pointer-events-auto"
             />
           </Magnet>
