@@ -14,11 +14,12 @@ export const Card3D: React.FC<Card3DProps> = ({
   className = '',
   index,
   total,
-  maxTilt = 6,
+  maxTilt = 7,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -65,14 +66,25 @@ export const Card3D: React.FC<Card3DProps> = ({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isMobile || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
+    const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+    const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xRatio);
+    mouseY.set(yRatio);
+    setSpotlightPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
   };
 
-  const handleMouseEnter = () => {
-    if (!isMobile) setIsHovered(true);
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isMobile && cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setSpotlightPos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -87,7 +99,7 @@ export const Card3D: React.FC<Card3DProps> = ({
     <div
       ref={cardRef}
       style={{ perspective: 1200 }}
-      className="w-full h-full"
+      className="w-full h-full relative"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -100,8 +112,18 @@ export const Card3D: React.FC<Card3DProps> = ({
           translateZ: scrollTranslateZ,
           willChange: isHovered ? 'transform' : 'auto',
         }}
-        className={`w-full h-full ${className}`}
+        className={`w-full h-full relative ${className}`}
       >
+        {/* Subtle dynamic spotlight tracking cursor */}
+        {!isMobile && (
+          <div
+            className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-3xl transition-opacity duration-300 z-30"
+            style={{
+              opacity: isHovered ? 1 : 0,
+              background: `radial-gradient(600px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(255, 255, 255, 0.08), transparent 50%)`,
+            }}
+          />
+        )}
         {children}
       </motion.div>
     </div>

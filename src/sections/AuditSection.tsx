@@ -182,8 +182,8 @@ export const AuditSection: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-xs text-white/60">Note globale :</span>
-                <span className={`text-2xl font-black ${results.score >= 75 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                <span className="text-xs text-white/60 font-mono">Indice global :</span>
+                <span className="text-2xl font-black font-mono text-white">
                   {results.score}/100
                 </span>
               </div>
@@ -192,32 +192,32 @@ export const AuditSection: React.FC = () => {
             {/* Metrics Row */}
             <div className="grid grid-cols-3 gap-3 my-5">
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-                <Zap className="w-4 h-4 mx-auto mb-1 text-amber-400" />
-                <span className="text-[10px] uppercase text-white/50 block">Affichage</span>
-                <span className="font-semibold text-white text-sm sm:text-base">{results.loadTime}</span>
+                <Zap className="w-4 h-4 mx-auto mb-1 text-white/70" />
+                <span className="text-[10px] uppercase text-white/50 block font-mono">Affichage</span>
+                <span className="font-semibold font-mono text-white text-sm sm:text-base">{results.loadTime}</span>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-                <BarChart3 className="w-4 h-4 mx-auto mb-1 text-purple-400" />
-                <span className="text-[10px] uppercase text-white/50 block">SEO Local</span>
-                <span className="font-semibold text-white text-sm sm:text-base">{results.seoScore}%</span>
+                <BarChart3 className="w-4 h-4 mx-auto mb-1 text-white/70" />
+                <span className="text-[10px] uppercase text-white/50 block font-mono">SEO Local</span>
+                <span className="font-semibold font-mono text-white text-sm sm:text-base">{results.seoScore}%</span>
               </div>
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center">
-                <ShieldCheck className="w-4 h-4 mx-auto mb-1 text-emerald-400" />
-                <span className="text-[10px] uppercase text-white/50 block">Sécurité</span>
-                <span className="font-semibold text-white text-sm sm:text-base">{results.securityScore}%</span>
+                <ShieldCheck className="w-4 h-4 mx-auto mb-1 text-white/70" />
+                <span className="text-[10px] uppercase text-white/50 block font-mono">Sécurité</span>
+                <span className="font-semibold font-mono text-white text-sm sm:text-base">{results.securityScore}%</span>
               </div>
             </div>
 
             {/* Key Findings */}
             <div className="space-y-4 pt-2">
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-2">
-                  <CheckCircle2 className="w-4 h-4" /> Points forts
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-white/90 flex items-center gap-1.5 mb-2 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-white/70" /> Atouts constatés
                 </h4>
                 <ul className="space-y-1.5">
                   {results.strengths.map((item, i) => (
                     <li key={i} className="text-xs sm:text-sm text-white/80 flex items-start gap-2">
-                      <span className="text-emerald-400 font-bold">•</span>
+                      <span className="text-white/40 font-bold">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -225,13 +225,13 @@ export const AuditSection: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
-                  <AlertTriangle className="w-4 h-4" /> Optimisations recommandées
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-white/90 flex items-center gap-1.5 mb-2 font-mono">
+                  <AlertTriangle className="w-4 h-4 text-white/70" /> Optimisations recommandées
                 </h4>
                 <ul className="space-y-1.5">
                   {results.issues.map((item, i) => (
                     <li key={i} className="text-xs sm:text-sm text-white/80 flex items-start gap-2">
-                      <span className="text-amber-400 font-bold">•</span>
+                      <span className="text-white/40 font-bold">•</span>
                       <span>{item}</span>
                     </li>
                   ))}

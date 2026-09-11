@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, CheckCircle2, Clock, Smartphone, Sparkles, ArrowRight } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, Smartphone, Sparkles, ArrowRight } from 'lucide-react';
 
 export interface ProjectDetail {
   id: number;
@@ -61,11 +61,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <div className="flex items-center justify-between p-5 sm:p-7 border-b border-[#D7E2EA]/10 bg-[#171717]">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#D7E2EA]/10 text-[#D7E2EA] font-medium">
+                  <span className="text-xs uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/10 text-white font-mono">
                     {project.category}
                   </span>
-                  <span className="flex items-center gap-1 text-xs text-emerald-400 font-medium">
-                    <Clock className="w-3.5 h-3.5" /> {project.delivery}
+                  <span className="text-xs text-white/60 font-mono">
+                    {project.delivery}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{project.name}</h3>
@@ -132,7 +132,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {project.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-sm text-white/90">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-white/70 shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </div>
                   ))}

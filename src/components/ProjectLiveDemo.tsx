@@ -103,9 +103,9 @@ export const ProjectLiveDemo: React.FC<ProjectLiveDemoProps> = ({ project }) => 
             </button>
           </div>
 
-          <span className="hidden md:inline-flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-2.5 py-1 rounded-full font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Démo Interactive
+          <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] text-white/70 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
+            Aperçu interactif
           </span>
         </div>
       </div>

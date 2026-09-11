@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
 import { FadeIn } from '../components/FadeIn';
 import { AnimatedText } from '../components/AnimatedText';
 import { ContactButton } from '../components/ContactButton';
@@ -10,6 +10,23 @@ export const AboutSection: React.FC = () => {
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
+
+  // Mouse parallax motion
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const parallaxX1 = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), { stiffness: 120, damping: 20 });
+  const parallaxY1 = useSpring(useTransform(mouseY, [-0.5, 0.5], [-25, 25]), { stiffness: 120, damping: 20 });
+
+  const parallaxX2 = useSpring(useTransform(mouseX, [-0.5, 0.5], [30, -30]), { stiffness: 120, damping: 20 });
+  const parallaxY2 = useSpring(useTransform(mouseY, [-0.5, 0.5], [30, -30]), { stiffness: 120, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
   // Smooth springs for 3D tumbling physics on scroll
   const moonRotateZRaw = useTransform(scrollYProgress, [0, 1], [-25, 45]);
@@ -47,11 +64,13 @@ export const AboutSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="a-propos"
+      onMouseMove={handleMouseMove}
       className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-24 sm:py-32 bg-[#0C0C0C] overflow-hidden perspective-[1200px]"
     >
-      {/* 3D Decorative Assets with 3D Scroll Rotation & Depth */}
+      {/* 3D Decorative Assets with Parallax & 3D Scroll Rotation */}
       <motion.div
         style={{
+          x: parallaxX1,
           y: moonY,
           rotateZ: moonRotateZ,
           rotateY: moonRotateY,
@@ -65,11 +84,14 @@ export const AboutSection: React.FC = () => {
           alt="Moon 3D icon"
           referrerPolicy="no-referrer"
           className="w-[120px] sm:w-[160px] md:w-[220px] object-contain drop-shadow-[0_20px_40px_rgba(182,0,168,0.2)]"
+          loading="lazy"
+          decoding="async"
         />
       </motion.div>
 
       <motion.div
         style={{
+          x: parallaxX2,
           y: legoY,
           rotateZ: legoRotateZ,
           rotateX: legoRotateX,
@@ -83,11 +105,14 @@ export const AboutSection: React.FC = () => {
           alt="Lego 3D icon"
           referrerPolicy="no-referrer"
           className="w-[120px] sm:w-[160px] md:w-[220px] object-contain drop-shadow-[0_20px_40px_rgba(118,33,176,0.25)]"
+          loading="lazy"
+          decoding="async"
         />
       </motion.div>
 
       <motion.div
         style={{
+          x: parallaxX2,
           y: objLeftY,
           rotateZ: objLeftRotate,
           transformStyle: 'preserve-3d',
@@ -99,11 +124,14 @@ export const AboutSection: React.FC = () => {
           alt="3D object left"
           referrerPolicy="no-referrer"
           className="w-[100px] sm:w-[140px] md:w-[190px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]"
+          loading="lazy"
+          decoding="async"
         />
       </motion.div>
 
       <motion.div
         style={{
+          x: parallaxX1,
           y: objRightY,
           rotateZ: objRightRotate,
           transformStyle: 'preserve-3d',
@@ -115,6 +143,8 @@ export const AboutSection: React.FC = () => {
           alt="3D object right"
           referrerPolicy="no-referrer"
           className="w-[130px] sm:w-[170px] md:w-[230px] object-contain drop-shadow-[0_20px_35px_rgba(182,0,168,0.2)]"
+          loading="lazy"
+          decoding="async"
         />
       </motion.div>
 

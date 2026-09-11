@@ -82,8 +82,8 @@ export const ProjectDetailPage: React.FC = () => {
             >
               {copied ? (
                 <>
-                  <Check className="w-3 h-3 text-emerald-400" />
-                  <span className="text-emerald-400 font-medium">Lien copié</span>
+                  <Check className="w-3 h-3 text-white" />
+                  <span className="text-white font-medium">Lien copié</span>
                 </>
               ) : (
                 <>
@@ -110,15 +110,14 @@ export const ProjectDetailPage: React.FC = () => {
         {/* Project Hero Header */}
         <section className="space-y-5 text-center sm:text-left">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-            <span className="text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-white/80 font-medium border border-white/10">
+            <span className="text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-white/80 font-mono border border-white/10">
               {project.category}
             </span>
-            <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-medium bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-white/70 font-mono border border-white/10">
               {project.delivery}
             </span>
-            <span className="inline-flex items-center gap-1 text-xs text-white/50 bg-white/5 px-3 py-1 rounded-full">
-              <MapPin className="w-3 h-3 text-amber-400" /> {project.location}
+            <span className="inline-flex items-center gap-1.5 text-xs text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/10 font-mono">
+              <MapPin className="w-3 h-3 text-white/70" /> {project.location}
             </span>
           </div>
 
@@ -184,7 +183,7 @@ export const ProjectDetailPage: React.FC = () => {
           </div>
 
           <div className="p-6 sm:p-7 rounded-2xl bg-[#131313] border border-white/10 space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-white/90 font-mono">
               Architecture mise en place
             </h3>
             <p className="text-white/80 text-sm sm:text-base leading-relaxed font-light">
@@ -210,7 +209,7 @@ export const ProjectDetailPage: React.FC = () => {
                 key={i}
                 className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"
               >
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-white/70 shrink-0 mt-0.5" />
                 <span className="text-xs sm:text-sm text-white/85 font-light leading-relaxed">{feat}</span>
               </div>
             ))}
@@ -280,8 +279,8 @@ export const ProjectDetailPage: React.FC = () => {
               <h4 className="font-semibold text-white text-sm sm:text-base">{project.clientName}</h4>
               <p className="text-xs text-white/50">{project.clientRole}</p>
             </div>
-            <span className="text-xs text-emerald-400 font-mono bg-emerald-950/40 px-2.5 py-1 rounded-full border border-emerald-500/20">
-              Projet livré & vérifié
+            <span className="text-xs text-white/50 font-mono">
+              {project.location}
             </span>
           </div>
         </section>

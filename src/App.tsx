@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { CustomCursor } from './components/CustomCursor';
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      // Small timeout to allow target element to mount if coming from another route
       setTimeout(() => {
         const id = hash.replace('#', '');
         const element = document.getElementById(id);
@@ -27,6 +27,7 @@ function ScrollHandler() {
 export default function App() {
   return (
     <HashRouter>
+      <CustomCursor />
       <ScrollHandler />
       <Routes>
         <Route path="/" element={<HomePage />} />
