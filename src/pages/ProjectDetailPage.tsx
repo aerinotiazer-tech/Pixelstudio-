@@ -6,7 +6,6 @@ import { Footer } from '../components/Footer';
 import {
   ArrowLeft,
   ArrowRight,
-  Clock,
   MapPin,
   CheckCircle2,
   Star,
@@ -114,8 +113,9 @@ export const ProjectDetailPage: React.FC = () => {
             <span className="text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-white/80 font-medium border border-white/10">
               {project.category}
             </span>
-            <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-mono bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">
-              <Clock className="w-3 h-3" /> {project.delivery}
+            <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-medium bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              {project.delivery}
             </span>
             <span className="inline-flex items-center gap-1 text-xs text-white/50 bg-white/5 px-3 py-1 rounded-full">
               <MapPin className="w-3 h-3 text-amber-400" /> {project.location}
@@ -200,7 +200,7 @@ export const ProjectDetailPage: React.FC = () => {
               Livrables
             </span>
             <h3 className="text-lg sm:text-xl font-bold text-white">
-              Fonctionnalités intégrées en 48 heures
+              Architecture & fonctionnalités clés
             </h3>
           </div>
 
@@ -318,7 +318,7 @@ export const ProjectDetailPage: React.FC = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-white/70 max-w-lg font-light leading-relaxed">
-            Profitez d'un site web professionnel livré en 48 heures, compatible paiement Mobile Money et conçu pour déclencher des ventes immédiates.
+            Profitez d'un site web sur-mesure, compatible paiement Mobile Money (MVola, Orange Money) et conçu pour décupler vos ventes directes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">

@@ -128,8 +128,8 @@ export const AboutSection: React.FC = () => {
 
         <div className="mt-10 sm:mt-14 md:mt-16 w-full flex justify-center">
           <AnimatedText
-            text="Je suis un créateur de sites web basé à Madagascar. Je transforme les idées des commerces locaux en vitrines numériques professionnelles. Chaque site est pensé pour attirer vos premiers clients et vous faire gagner en crédibilité. Paiement MVola / Orange Money, livraison en 48h."
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)]"
+            text="Je conçois des vitrines et boutiques web sur-mesure à Madagascar, alliant direction artistique soignée et haute performance technique. Chaque réalisation est pensée pour valoriser votre marque, convertir vos visiteurs et intégrer les paiements locaux MVola et Orange Money."
+            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[580px] text-[clamp(1rem,2vw,1.35rem)]"
           />
         </div>
 

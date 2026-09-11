@@ -5,7 +5,7 @@ import { LiveProjectButton } from '../components/LiveProjectButton';
 import { FadeIn } from '../components/FadeIn';
 import { Card3D } from '../components/Card3D';
 import { projectsData, ProjectItem } from '../data/projects';
-import { Clock, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -57,8 +57,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                     <span className="uppercase text-white/50 font-medium tracking-wider text-xs">
                       {project.category}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-mono bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-                      <Clock className="w-3 h-3" /> {project.delivery}
+                    <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      {project.delivery}
                     </span>
                   </div>
                   <h3 className="font-semibold text-white text-lg sm:text-2xl md:text-3xl tracking-tight mt-0.5">

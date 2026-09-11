@@ -92,7 +92,7 @@ export const HeroSection: React.FC = () => {
       <div className="w-full px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 flex justify-between items-end z-20 pointer-events-none">
         <FadeIn delay={0.25} y={15} duration={0.7}>
           <p className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.4rem)] max-w-[160px] sm:max-w-[220px] md:max-w-[260px]">
-            créateur de sites web qui font vendre, livrés en 48h — à Madagascar
+            conception de sites web sur-mesure & performants — à Madagascar
           </p>
         </FadeIn>
         <FadeIn delay={0.35} y={15} duration={0.7} className="pointer-events-auto">
